@@ -1,10 +1,12 @@
 <div class="container">
+  <div class="row">
+    <a ui-sref="categories"><button class="btn btn-default"><i class="fa fa-chevron-left"></i> Terug naar zoeken</button></a>
+  </div>
   <div class="row" ng-if="noTerm()">
     <div class="col-sm-6 col-sm-offset-3" style="text-align:center;">
       <p class="lead">
         Je hebt geen zoekterm opgegeven.<br />
       </p>
-      <a ui-sref="categories"><button class="btn btn-info">Terug naar zoeken</button></a>
     </div>
   </div>
   <div class="row" style="text-align:center;" ng-if="!noTerm()" ng-hide="hasResults()">
@@ -13,11 +15,14 @@
       Resultaten ophalen...
     </h3>
   </div>
-  <div class="row" ng-repeat="cat in results">
-    <div class="col-md-4" ng-repeat="ad in cat">
+  <div class="row category" ng-show="hasResults()" ng-repeat="id in selected">
+    <div class="col-xs-12">
+      <h2>{{catFromId(id).name}} <i class="fa fa-circle-o-notch fa-spin" ng-hide="results[id].loaded"></i></h2>
+    </div>
+    <div class="col-md-4 ad" ng-repeat="ad in results[id].ads">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <p class="title"><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></p>
+          <p><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></p>
         </div>
         <div class="panel-body">
           <span class="price pull-right">{{ad.price}}</span>
