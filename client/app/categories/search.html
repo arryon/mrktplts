@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row" ng-if="noTerm()">
+    <div class="col-sm-6 col-sm-offset-3" style="text-align:center;">
+      <p class="lead">
+        Je hebt geen zoekterm opgegeven.<br />
+      </p>
+      <a ui-sref="categories"><button class="btn btn-info">Terug naar zoeken</button></a>
+    </div>
+  </div>
+  <div class="row" style="text-align:center;" ng-if="!noTerm()" ng-hide="hasResults()">
+    <h3>
+      <i class="fa fa-cog fa-spin"></i>
+      Resultaten ophalen...
+    </h3>
+  </div>
+  <div class="row" ng-repeat="cat in results">
+    <div class="col-md-4" ng-repeat="ad in cat">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="title"><a href="{{ad.url}}" target="_blank">{{ad.title}}</a></p>
+        </div>
+        <div class="panel-body">
+          <span class="price pull-right">{{ad.price}}</span>
+          <img class="pull-left" src="{{ad.img}}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

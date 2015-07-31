@@ -1,0 +1,47 @@
+<ui-view>
+<header class="hero-unit" id="banner" style="margin-bottom: 40px;">
+  <div class="container">
+    <h1>Mrktplaats</h1>
+    <p class="lead">Zoek in de aangevinkte categorieën naar:</p>
+    <div class="input-group col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+      <input type="text" class="form-control" ng-model="form.term" placeholder="Zoekterm">
+      <span class="input-group-btn">
+        <button class="btn btn-info" type="button" ng-click="search(form)">Zoek!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" ng-click="selectAll()">Selecteer alles</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" ng-click="selectNone()">Selecteer niets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4" ng-hide="catsLoaded" style="text-align:center;">
+      <h3>
+        <i class="fa fa-cog fa-spin"></i>
+        Categorieeën laden
+      </h3>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <ul class="categories">
+        <li class="col-xs-10 col-sm-5 col-md-4" ng-repeat="cat in categories">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checklist-model="selected" checklist-value="cat.id">{{cat.name}}</input>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</ui-view>

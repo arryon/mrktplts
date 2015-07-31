@@ -1,0 +1,16 @@
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Mrktplaats</h1>
+    <p class="lead">Gemakkelijk zoeken op Marktplaats!</p>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Kies je zoekmethode</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="method in searches">
+        <li><a ui-sref="{{method.url}}" tooltip="{{method.info}}">{{method.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
