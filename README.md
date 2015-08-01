@@ -9,3 +9,6 @@ bower install
 ```
 grunt serve
 ```
+
+# Licence
+MIT
