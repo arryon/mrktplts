@@ -2,49 +2,76 @@
 <header class="hero-unit" id="banner" style="margin-bottom: 40px;">
   <div class="container">
     <h1>Mrktplaats</h1>
-    <p class="lead">Zoek in de aangevinkte categorieën (alle velden optioneel)</p>
-    <div class="row form-group">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-        <input type="text" class="form-control" ng-model="form.term" placeholder="Zoekterm" />
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-sm-6 col-md-4 col-md-offset-2">
-        <input type="text" class="form-control" ng-model="form.zipcode" placeholder="Postcode (1234AB)" />
-      </div>
-      <div class="col-sm-6 col-md-4">
-        <select class="form-control" ng-model="form.distance">
-          <option value="" selected>Alle afstanden</option>
-          <option value="3000">&lt; 3 km</option>
-          <option value="5000">&lt; 5 km</option>
-          <option value="10000">&lt; 10 km</option>
-          <option value="15000">&lt; 15 km</option>
-          <option value="25000">&lt; 25 km</option>
-          <option value="50000">&lt; 50 km</option>
-          <option value="75000">&lt; 75 km</option>
-        </select>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-sm-3 col-md-2 col-md-offset-2">
-        <div class="input-group">
-          <div class="input-group-addon">van €</div>
-          <input type="text" class="form-control" ng-model="form.from" placeholder="0,00" />
+    <div class="row">
+      <div class="col-md-6">
+        <p class="lead">Zoek in de aangevinkte categorieën...</p>
+        <div class="row form-group">
+          <div class="col-sm-12">
+            <input type="text" class="form-control" ng-model="form.term" placeholder="Zoekterm" />
+          </div>
         </div>
-      </div>
-      <div class="col-sm-3 col-md-2">
-        <div class="input-group">
-          <div class="input-group-addon">tot €</div>
-          <input type="text" class="form-control" ng-model="form.to" placeholder="0,00" />
+        <div class="row form-group">
+          <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="form.zipcode" placeholder="Postcode (1234AB)" />
+          </div>
+          <div class="col-sm-6">
+            <select class="form-control" ng-model="form.distance">
+              <option value="" selected>Alle afstanden</option>
+              <option value="3000">&lt; 3 km</option>
+              <option value="5000">&lt; 5 km</option>
+              <option value="10000">&lt; 10 km</option>
+              <option value="15000">&lt; 15 km</option>
+              <option value="25000">&lt; 25 km</option>
+              <option value="50000">&lt; 50 km</option>
+              <option value="75000">&lt; 75 km</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-3 col-md-4">
-        <button class="btn btn-danger btn-block" ng-click="search(form)">Zoeken!</button>
-      </div>
-    </div>
+        <div class="row form-group">
+          <div class="col-sm-3 col-xs-6">
+            <div class="input-group">
+              <div class="input-group-addon">van €</div>
+              <input type="text" class="form-control" ng-model="form.from" placeholder="0,00" />
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="input-group">
+              <div class="input-group-addon">tot €</div>
+              <input type="text" class="form-control" ng-model="form.to" placeholder="0,00" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <button class="btn btn-danger btn-block" ng-click="search(form)">Zoeken!</button>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <button class="btn btn-warning btn-block" ng-click="save(form)">Opslaan!</button>
+          </div>
+        </div>
+      </div><!-- first col -->
+      <div class="col-md-6">
+        <p class="lead">... of kies een opgeslagen zoekopdracht</p>
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <ul class="list-group">
+              <li ng-click="selectQuery(query)" class="clearfix list-group-item query-item" ng-repeat="query in savedQueries">
+                <span class="pull-left">{{query.name}}</span>
+                <i ng-click="removeQuery(query)" class="pull-right fa fa-trash"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" ng-show="savedQueries.length > 0">
+          <span class="pointer" ng-click="removeStorage()"><i class="fa fa-trash"></i> Alles verwijderen</span>
+        </div>
+      </div><!-- second col -->
+    </div><!-- row -->
   </div>
 </header>
 <div class="container">
+  <div class="row" style="text-align:center;">
+    <p class="lead">
+    Categorieëen</p>
+  </div>
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div class="btn-group btn-group-justified">
@@ -69,7 +96,7 @@
         <li class="col-xs-10 col-sm-5 col-md-4" ng-repeat="cat in categories">
           <div class="checkbox">
             <label>
-              <input type="checkbox" checklist-model="selected" checklist-value="cat.id">{{cat.name}}</input>
+              <input type="checkbox" checklist-model="selected.selection" checklist-value="cat.id">{{cat.name}}</input>
             </label>
           </div>
         </li>

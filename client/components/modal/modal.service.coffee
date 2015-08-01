@@ -2,7 +2,7 @@
 
 angular.module 'mrktplaatsApp'
 .factory 'Modal', ($rootScope, $modal) ->
-  
+
   ###
   Opens a modal
   @param  {Object} scope      - an object to be merged with modal's scope
@@ -19,12 +19,34 @@ angular.module 'mrktplaatsApp'
       windowClass: modalClass
       scope: modalScope
 
-  
+
   # Public API here
-  
-  # Confirmation modals 
+  saveWithName:
+    save: (cb) ->
+      cb = cb or angular.noop
+      args = Array::slice.call arguments
+      console.info args
+      thismodal = openModal(
+        modal:
+          dismissable: true
+          templateUrl: 'modal.html'
+        buttonSave: (e) ->
+          thismodal.close this.name
+          return
+        buttonCancel: (e) ->
+          thismodal.dismiss e
+          return
+      )
+
+      thismodal.result.then (name) ->
+        cb name
+        return
+
+      return
+
+  # Confirmation modals
   confirm:
-    
+
     ###
     Create a function to open a delete confirmation modal (ex. ng-click='myModalFn(name, arg1, arg2...)')
     @param  {Function} del - callback, ran when delete is confirmed
@@ -32,7 +54,7 @@ angular.module 'mrktplaatsApp'
     ###
     delete: (del) ->
       del = del or angular.noop
-      
+
       ###
       Open a delete confirmation modal
       @param  {String} name   - name or info to show on modal

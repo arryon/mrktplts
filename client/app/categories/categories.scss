@@ -19,3 +19,21 @@ i.fa {
 .category {
   border-bottom: 1px solid #eee;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.query-item {
+  background: none;
+  &:hover {
+    background-color:#fff;
+    color: #000;
+    cursor: pointer;
+  }
+  i {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

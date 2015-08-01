@@ -15,7 +15,7 @@
       Resultaten ophalen...
     </h3>
   </div>
-  <div class="row category" ng-show="hasResults()" ng-repeat="id in selected">
+  <div class="row category" ng-show="!results[id].empty" ng-repeat="id in selected.selection">
     <div class="col-xs-12">
       <h2>{{catFromId(id).name}} <i class="fa fa-circle-o-notch fa-spin" ng-hide="results[id].loaded"></i></h2>
     </div>
