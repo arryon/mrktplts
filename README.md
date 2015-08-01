@@ -1,3 +1,5 @@
+![repo image](https://raw.github.com/arryon/mrktplts/master/mrktplts.png)
+
 # Installation
 ```
 npm install -g grunt grunt-cli
